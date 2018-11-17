@@ -1,0 +1,23 @@
+@helper Base64Image(byte[] bindata, string alt, bool available)
+{
+    if (bindata != null && bindata.Length > 0)
+    {
+        string Base64Prefix = "data:image/jpeg;base64,";
+        string image = Base64Prefix + System.Convert.ToBase64String(bindata);
+
+        // Diese Base64-codierte Repräsentation der Bilddatei wird dem Browser direkt übergeben
+        if (available)
+        {
+<img class="square" alt="@alt" src="@image" />
+        }
+        else
+        {
+<img class="square unavailable" alt="@alt" src="@image" />
+        }
+
+    }
+    else
+    {
+<p class="error">Es kann kein Bild gezeigt werden </p>
+    }
+}
